@@ -427,13 +427,13 @@ flowchart TD
 - `Buffers: shared hit=... read=...` lines let you compare actual I/O between the two plan shapes for the same data.
 - `Planning Time` vs `Execution Time` — the rewrite is a **planning-phase** decision; at this tiny scale, don't expect `Execution Time` to move meaningfully either.
 
-### 6.3 Observations to record
+### 6.3 Observations (Confirmed, run twice with identical results)
 
-- [ ] Node type seen on PG18 for `nonulls`: __________
-- [ ] Node type seen on PG19 Beta4 for `nonulls`: __________
-- [ ] Node type seen on PG18 for `withnulls`: __________
-- [ ] Node type seen on PG19 Beta4 for `withnulls`: __________
-- [ ] Matches the Predicted table in section 1.4? (Y/N): __________
+- [x] Node type seen on PG18 for `nonulls`: SubPlan (hashed)
+- [x] Node type seen on PG19 Beta4 for `nonulls`: Hash Anti Join
+- [x] Node type seen on PG18 for `withnulls`: SubPlan
+- [x] Node type seen on PG19 Beta4 for `withnulls`: SubPlan
+- [x] Matches the Predicted table in section 1.4? (Y/N): Y
 
 ### 6.4 What the benefit actually is (plain terms)
 
