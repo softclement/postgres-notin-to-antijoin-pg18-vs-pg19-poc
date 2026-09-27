@@ -33,6 +33,8 @@
   - **`nonulls`** — proves the rewrite happens when it's safe
   - **`withnulls`** — proves the rewrite is correctly declined when it isn't safe, and shows what `NOT IN` actually returns in that case (0 rows) versus what `NOT EXISTS` returns (the correct non-matching rows)
 
+> **Practical takeaway:** If there's any chance the subquery side could contain a `NULL`, prefer `NOT EXISTS` over `NOT IN` in application code. `NOT EXISTS` gives the correct result either way and has always used an Anti Join — so you get the efficient plan unconditionally, without depending on the planner being able to prove non-nullability first.
+
 ### 1.4 Expected outcomes (Predicted — confirm after running)
 
 | Scenario | NULLs in subquery? | Expected `NOT IN` row count | Expected PG18 plan | Expected PG19b4 plan |
